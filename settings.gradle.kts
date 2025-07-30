@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CollektiveExampleAndroid"
 include(":app")
- 
+include(":shared")

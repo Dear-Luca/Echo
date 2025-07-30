@@ -3,6 +3,7 @@
 package it.unibo.collektive
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import it.unibo.collektive.shared.Greeting
 import it.unibo.collektive.ui.theme.CollektiveExampleAndroidTheme
 import it.unibo.collektive.viewmodels.NearbyDevicesViewModel
 
@@ -39,6 +41,7 @@ import it.unibo.collektive.viewmodels.NearbyDevicesViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("Login Activity", "Hello from shared module: " + (Greeting().greet()))
         enableEdgeToEdge()
         setContent {
             CollektiveExampleAndroidTheme {
