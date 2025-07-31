@@ -41,13 +41,13 @@ import it.unibo.collektive.viewmodels.NearbyDevicesViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("Login Activity", "Hello from shared module: " + (Greeting().greet()))
         enableEdgeToEdge()
         setContent {
             CollektiveExampleAndroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CollektiveNearbyDevices(modifier = Modifier.padding(innerPadding))
-                }
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    CollektiveNearbyDevices(modifier = Modifier.padding(innerPadding))
+//                }
+                Text(Greeting().greet())
             }
         }
     }
