@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,9 +6,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
     id("it.unibo.collektive.collektive-plugin") version "24.0.8"
     kotlin("plugin.serialization") version "2.1.20"
-
 }
 
 kotlin {
@@ -19,18 +18,18 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -51,7 +50,6 @@ kotlin {
             implementation(libs.kmqtt.client)
             implementation(libs.logging)
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -90,3 +88,7 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+ktlint {
+    android.set(true)
+    ignoreFailures.set(false)
+}

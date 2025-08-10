@@ -2,7 +2,6 @@ package com.example.echo.network
 
 import com.diamondedge.logging.logging
 import io.github.davidepianca98.MQTTClient
-import kotlin.uuid.ExperimentalUuidApi
 import io.github.davidepianca98.mqtt.MQTTVersion
 import io.github.davidepianca98.mqtt.Subscription
 import io.github.davidepianca98.mqtt.packets.Qos
@@ -21,6 +20,7 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -45,7 +45,7 @@ class MqttMailbox private constructor(
             MQTTVersion.MQTT5,
             host,
             port,
-            null
+            null,
         ) { message ->
             // Handle incoming messages and heartbeat
             val topic = message.topicName
@@ -79,7 +79,7 @@ class MqttMailbox private constructor(
             // heartbeat with Quality of service -> 0 (fire and forget)
             Subscription(HEARTBEAT_WILD_CARD, SubscriptionOptions(Qos.AT_MOST_ONCE)),
             // deviceId message with Quality of service -> 1 (requiring a PUBACK acknowledgment)
-            Subscription(deviceTopic(deviceId), SubscriptionOptions(Qos.AT_LEAST_ONCE))
+            Subscription(deviceTopic(deviceId), SubscriptionOptions(Qos.AT_LEAST_ONCE)),
         )
         mqttClient?.subscribe(subscriptions)
 
@@ -95,7 +95,7 @@ class MqttMailbox private constructor(
             retain = false,
             qos = Qos.AT_MOST_ONCE,
             topic = heartbeatTopic(deviceId),
-            payload = byteArrayOf().toUByteArray()
+            payload = byteArrayOf().toUByteArray(),
         )
         delay(1.seconds)
         sendHeartbeatPulse()
@@ -124,7 +124,7 @@ class MqttMailbox private constructor(
                 retain = false,
                 qos = Qos.AT_LEAST_ONCE,
                 topic = deviceTopic(receiverId),
-                payload = serializer.encodeSerialMessage(message).toUByteArray()
+                payload = serializer.encodeSerialMessage(message).toUByteArray(),
             )
         }
     }

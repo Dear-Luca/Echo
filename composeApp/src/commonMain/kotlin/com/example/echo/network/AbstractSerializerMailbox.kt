@@ -31,8 +31,18 @@ abstract class AbstractSerializerMailbox<ID : Any>(
     private val serializer: SerialFormat,
     private val retentionTime: Duration,
 ) : Mailbox<ID> {
-    protected data class TimedMessage<ID : Any> @OptIn(ExperimentalTime::class) constructor(val message: Message<ID, Any?>, val timestamp: Instant)
-    protected data class TimedHeartbeat<ID : Any> @OptIn(ExperimentalTime::class) constructor(val deviceId: ID, val timestamp: Instant)
+    protected data class TimedMessage<ID : Any>
+    @OptIn(ExperimentalTime::class)
+    constructor(
+        val message: Message<ID, Any?>,
+        val timestamp: Instant,
+    )
+    protected data class TimedHeartbeat<ID : Any>
+    @OptIn(ExperimentalTime::class)
+    constructor(
+        val deviceId: ID,
+        val timestamp: Instant,
+    )
 
     private val messages = mutableMapOf<ID, TimedMessage<ID>>()
     private val neighbors = mutableSetOf<TimedHeartbeat<ID>>()
