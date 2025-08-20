@@ -9,13 +9,17 @@ androidx-core = "1.16.0"
 androidx-espresso = "3.6.1"
 androidx-lifecycle = "2.9.1"
 androidx-testExt = "1.2.1"
+collektiveStdlib = "26.1.2"
 composeMultiplatform = "1.8.2"
 junit = "4.13.2"
 kmqttCommon = "1.0.0"
-kotlin = "2.1.20"
+kotlin = "2.2.10"
+kotlinxSerializationJson = "1.9.0"
 logging = "2.0.3"
 
 [libraries]
+collektive-dsl = { module = "it.unibo.collektive:collektive-dsl", version.ref = "collektiveStdlib" }
+collektive-stdlib = { module = "it.unibo.collektive:collektive-stdlib", version.ref = "collektiveStdlib" }
 kmqtt-client = { module = "io.github.davidepianca98:kmqtt-client", version.ref = "kmqttCommon" }
 kmqtt-common = { module = "io.github.davidepianca98:kmqtt-common", version.ref = "kmqttCommon" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -28,6 +32,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 logging = { module = "com.diamondedge:logging", version.ref = "logging" }
 
 [plugins]

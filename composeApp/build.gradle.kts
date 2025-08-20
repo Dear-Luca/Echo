@@ -7,8 +7,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
-    id("it.unibo.collektive.collektive-plugin") version "24.0.8"
-    kotlin("plugin.serialization") version "2.1.20"
+    id("it.unibo.collektive.collektive-plugin") version "26.1.2"
+    kotlin("plugin.serialization") version "2.2.10"
 }
 
 kotlin {
@@ -44,12 +44,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation("it.unibo.collektive:collektive-dsl:24.0.8")
-            implementation("it.unibo.collektive:collektive-stdlib:24.0.8")
+            implementation(libs.collektive.dsl)
+            implementation(libs.collektive.stdlib)
             implementation(libs.kmqtt.common)
             implementation(libs.kmqtt.client)
             implementation(libs.logging)
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+            implementation(libs.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
